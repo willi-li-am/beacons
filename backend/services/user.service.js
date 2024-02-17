@@ -16,12 +16,12 @@ const createUser = async (body)=>{
 }
 
 const getUser = async (id)=>{ //parameter should be string of the id??
-        const user =  await User.findById(id)
-        return user
+    const user =  await User.findById(id)
+    return user
 }
 
 const sendFriendRequest = async (senderId, receiverId)=>{ //parameter should be string of the id??
-    if (senderId == receivedId){
+    if (senderId == receiverId){
         throw new Error("Cannot send a friend request to yourself")
     }
     
@@ -33,17 +33,18 @@ const sendFriendRequest = async (senderId, receiverId)=>{ //parameter should be 
     }
 
     if (receiver.friendRequestReceived.includes(sender)){
-        throw new Error ("Alreday requested")
+        throw new Error ("Already requested")
     }
     if (receiver.friends.includes(senderId)){
-        throw new Error ("Alreday friends")
+        throw new Error ("Already friends")
     }
 
     receiver.friendRequestReceived.push(senderId)
     sender.friendRequestSent.push (receiverId)
 
     await receiver.save()
-    await sender.save()
+    return await sender.save()
+
     //friend request received of the other user
     //update friend request sent array
     //if friend request does not exist, return error
@@ -51,13 +52,13 @@ const sendFriendRequest = async (senderId, receiverId)=>{ //parameter should be 
 const acceptFriendRequest = async (senderId, receiverId)=>{ //parameter should be string of the id??
     const sender = await User.findById(senderId)
     const receiver = await User.findById(receiverId)
-    sender.friendRequestSent.pop(receiverId)
-    receiver.friendRequestReceived.pop(senderId)
+    sender.friendRequestSent.filter(elt => elt != receiverId)
+    receiver.friendRequestReceived.filter(elt => elt != senderId)
     sender.friends.push(receiverId)
     receiver.friends.push(senderId)
     
     await receiver.save()
-    await sender.save()
+    return await sender.save()
     //update friend request sent array of other person, update friend request received of u
     //add to friend array list
     //pop off the friend requests list
@@ -65,7 +66,10 @@ const acceptFriendRequest = async (senderId, receiverId)=>{ //parameter should b
 const declineFriendRequest = async (senderId, receiverId)=>{ //parameter should be string of the id??
     const sender = await User.findById(senderId)
     const receiver = await User.findById(receiverId)
-    receiver.friendRequestReceived.pop(senderId)
-    await receiver.save()
+    receiver.friendRequestReceived.filter(elt => elt != senderId)
+    return await receiver.save()
 }
 
+module.exports = {
+    createUser, getUser, sendFriendRequest, acceptFriendRequest, declineFriendRequest
+}
