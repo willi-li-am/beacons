@@ -19,6 +19,20 @@ const getUser = async (id)=>{ //parameter should be string of the id??
         const user =  await User.findById(id)
         return user
 }
+const getUsers = async (users)=>{ //parameter should be string of the id??
+    if (!users) {
+        throw new Error("Incorrect Input")
+    }
+    let index = 0
+    const usersArray = [];
+
+    for (let user in users){
+        usersArray.push(await User.findById(users[user]))                
+    }
+
+    // const users = await Group.find({users: id})
+    return usersArray
+}
 
 const sendFriendRequest = async (senderId, receiverId)=>{ //parameter should be string of the id??
     if (senderId == receiverId){
@@ -71,5 +85,5 @@ const declineFriendRequest = async (senderId, receiverId)=>{ //parameter should 
 }
 
 module.exports = {
-    createUser, getUser, sendFriendRequest, acceptFriendRequest, declineFriendRequest 
+    createUser, getUser, getUsers, sendFriendRequest, acceptFriendRequest, declineFriendRequest 
 }
