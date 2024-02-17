@@ -6,14 +6,14 @@ const UserSchema = new Schema({
     email: {type:String , required: true, unique: true},
     name: {type:String, required: true},
     password: {type:String, required: true},
-    friends :{type:[String], required:true},
-    group :{type:[String], required:true},
-    events :{type:[String], required: true},
+    friends :{type:[String], required:true}, //id
     // settings :{type: [Mixed], required: true}, //maybe u dont need this..?
     friendRequestSent: {type:[String], required: true},
     friendRequestReceived: {type:[String], required: true}
 
+}, {
+    timestamps:true
 })
 
 const User = mongoose.model('User', UserSchema)
-module.exports(User)
+module.exports = User
