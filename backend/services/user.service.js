@@ -8,7 +8,7 @@ const createUser = async (body)=>{
         throw new Error ("Incorrect Input")
     }
 
-    const newUser = new user()
+    const newUser = new User()
     newUser.email = email
     newUser.name = name
     newUser.password = password
