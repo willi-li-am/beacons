@@ -6,7 +6,7 @@ const UserSchema = new Schema({
     email: {type:String , required: true, unique: true},
     name: {type:String, required: true},
     password: {type:String, required: true},
-    friends :{type:[String], required:true}, //id
+    friends :{type:[String], required:false},
     // settings :{type: [Mixed], required: true}, //maybe u dont need this..?
     friendRequestSent: {type:[String], required: true},
     friendRequestReceived: {type:[String], required: true}

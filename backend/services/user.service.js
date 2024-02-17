@@ -44,18 +44,28 @@ const sendFriendRequest = async (senderId, receiverId)=>{ //parameter should be 
 
     await receiver.save()
     await sender.save()
-        //friend request received of the other user
+    //friend request received of the other user
     //update friend request sent array
     //if friend request does not exist, return error
 }
-const acceptFriendRequest = (senderId, receivedId)=>{ //parameter should be string of the id??
-    const sender =
+const acceptFriendRequest = async (senderId, receiverId)=>{ //parameter should be string of the id??
+    const sender = await User.findById(senderId)
+    const receiver = await User.findById(receiverId)
+    sender.friendRequestSent.pop(receiverId)
+    receiver.friendRequestReceived.pop(senderId)
+    sender.friends.push(receiverId)
+    receiver.friends.push(senderId)
+    
+    await receiver.save()
+    await sender.save()
     //update friend request sent array of other person, update friend request received of u
     //add to friend array list
     //pop off the friend requests list
 }
-const declineFriendRequest = (friendRequestSent, )=>{ //parameter should be string of the id??
-    //update friend request received array of me
-    //pop off the friend requests list
+const declineFriendRequest = async (senderId, receiverId)=>{ //parameter should be string of the id??
+    const sender = await User.findById(senderId)
+    const receiver = await User.findById(receiverId)
+    receiver.friendRequestReceived.pop(senderId)
+    await receiver.save()
 }
 
