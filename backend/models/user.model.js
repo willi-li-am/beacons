@@ -11,6 +11,8 @@ const UserSchema = new Schema({
     friendRequestSent: {type:[String], required: true},
     friendRequestReceived: {type:[String], required: true}
 
+}, {
+    timestamps:true
 })
 
 const User = mongoose.model('User', UserSchema)
