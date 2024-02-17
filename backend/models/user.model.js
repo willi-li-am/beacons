@@ -8,8 +8,8 @@ const UserSchema = new Schema({
     password: {type:String, required: true},
     friends :{type:[String], required:false},
     // settings :{type: [Mixed], required: true}, //maybe u dont need this..?
-    friendRequestSent: {type:[String], required: true},
-    friendRequestReceived: {type:[String], required: true}
+    friendRequestSent: {type:[String], required: false},
+    friendRequestReceived: {type:[String], required: false}
 
 }, {
     timestamps:true
