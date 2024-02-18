@@ -16,8 +16,8 @@ const createUser = async (body)=>{
 }
 
 const getUser = async (id)=>{ //parameter should be string of the id??
-        const user =  await User.findById(id)
-        return user
+    const user = await User.findById(id)
+    return user
 }
 const getUsers = async (users)=>{ //parameter should be string of the id??
     if (!users) {
