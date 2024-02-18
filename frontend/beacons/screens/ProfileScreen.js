@@ -49,7 +49,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#C8BFFF', // Light grey background
     color: '#FFFFFF',
     paddingTop: 40,
-    paddingBottom: 115,
   },
 });
 

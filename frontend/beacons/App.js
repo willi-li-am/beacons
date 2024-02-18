@@ -11,7 +11,8 @@ import MapScreen from './screens/MapScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import SearchScreen from './screens/SearchScreen';
 import FriendsScreen from './screens/FriendsScreen';
-import EventsScreen from './screens/EventsScreen';
+import EventsScreen from './screens/eventsScreen';
+import RegisterScreen from './screens/RegisterScreen';
 import { AuthContextProvider } from './hooks/AuthContext';
 
 // Define any additional screens you have
@@ -113,7 +114,7 @@ export default function App() {
             options={{ headerShown: false }}
           />
           <Stack.Screen name="TabNavigator" component={BottomTabNavigator} />
-          <Stack.Screen name="RegisterScreen" component={LoginScreen} />
+          <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
         </Stack.Navigator>
       </NavigationContainer>
       </AuthContextProvider>

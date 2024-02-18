@@ -12,13 +12,14 @@ const RegisterScreen = ({ navigation }) => {
 
   const handleRegister = async () => {
     // Replace with your actual backend API endpoint
-    const registerUser = async (username, password) => {
+    const registerUser = async (email, password, name) => {
       try {
         const response = await axios.post(
           'https://beacon-9ob2.onrender.com/user/',
           {
-            username: username,
+            email: email,
             password: password,
+            name: name,
           }
         );
         if (response.status === 200) {
@@ -29,7 +30,7 @@ const RegisterScreen = ({ navigation }) => {
         console.error(error);
       }
     };
-    registerUser(username, password);
+    registerUser(email, password, name);
   };
 
   return (
@@ -44,6 +45,13 @@ const RegisterScreen = ({ navigation }) => {
       <Image source={require('../assets/logo.png')} style={styles.logo} />
       <TextInput
         style={styles.input}
+        onChangeText={setName}
+        value={name}
+        placeholder="Name"
+        placeholderTextColor="#A7A7A7"
+      />
+      <TextInput
+        style={styles.input}
         onChangeText={setEmail}
         value={email}
         placeholder="Email"
@@ -54,14 +62,6 @@ const RegisterScreen = ({ navigation }) => {
         onChangeText={setPassword}
         value={password}
         placeholder="Password"
-        placeholderTextColor="#A7A7A7"
-        secureTextEntry
-      />
-      <TextInput
-        style={styles.input}
-        onChangeText={setName}
-        value={name}
-        placeholder="Name"
         placeholderTextColor="#A7A7A7"
         secureTextEntry
       />
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#DCC7FF',
     alignItems: 'center',
     justifyContent: 'flex-start', // Changed to 'flex-start' to align items to the top
-    paddingTop: 120, // Add padding to push the content down, adjust as needed
+    paddingTop: 50, // Add padding to push the content down, adjust as needed
   },
   title: {
     fontSize: 36,

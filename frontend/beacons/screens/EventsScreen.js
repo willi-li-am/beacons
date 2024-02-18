@@ -149,7 +149,7 @@ const EventsScreen = () => {
     <>
       <ScrollView
         style={styles.container}
-        contentContainerStyle={{ paddingBottom: 100 }} // Added padding at the bottom for better scrolling
+        contentContainerStyle={{ paddingBottom: 120 }} // Added padding at the bottom for better scrolling
       >
         <View style={styles.headerContainer}>
           <Text style={styles.headerTitle}>Beacons</Text>
@@ -165,7 +165,7 @@ const EventsScreen = () => {
 export const EventsProfile = ({children}) => {
   return (
     <>
-      <ScrollView style={styles.container}>
+      <ScrollView style={styles.container} contentContainerStyle={{ paddingBottom: 120 }}>
         {children}
         {eventsData.map((event, index) => (
           <EventItem key={index} event={event} />
