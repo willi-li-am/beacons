@@ -8,10 +8,10 @@ import { Ionicons } from '@expo/vector-icons';
 // Import your screens
 import LoginScreen from './screens/LoginScreen';
 import MapScreen from './screens/MapScreen';
-import ProfileScreen from './screens/profileScreen';
+import ProfileScreen from './screens/ProfileScreen';
 import SearchScreen from './screens/SearchScreen';
 import FriendsScreen from './screens/FriendsScreen';
-import EventsScreen from './screens/eventsScreen';
+import EventsScreen from './screens/EventsScreen';
 import { AuthContextProvider } from './hooks/AuthContext';
 
 // Define any additional screens you have
