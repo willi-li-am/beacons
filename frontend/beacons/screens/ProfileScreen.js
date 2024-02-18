@@ -28,15 +28,15 @@ const ProfileScreen = ({ route }) => { // Destructure `route` directly here
 
   return (
     <View style={styles.container} >
-      <EventsProfile>
-      <ProfileHeader name={name}/>
-      <Text style={{
-        fontWeight: 'bold',
-        fontSize: 20,
-        marginTop: 10,
-        marginLeft: 20,
-      }}>Beacons</Text>
-      </EventsProfile>
+      <EventsProfile userID={name}>
+        <ProfileHeader name={name}/>
+        <Text style={{
+          fontWeight: 'bold',
+          fontSize: 20,
+          marginTop: 10,
+          marginLeft: 20,
+        }}>My Beacons</Text>
+        </EventsProfile>
     </View>
   );
 };

@@ -90,7 +90,7 @@ const BottomTabNavigator = () => {
     <Tab.Screen name="Search" component={SearchScreen} options={{ tabBarLabel: 'Search'}} />
     <Tab.Screen name="Create" component={MapScreen} options={{ tabBarLabel: 'Create'}} />
     <Tab.Screen name="Friends" component={FriendsScreen} options={{ tabBarLabel: 'Friends'}} />
-    <Tab.Screen name="Profile" component={ProfileScreen} options={{ tabBarLabel: 'Profile'}} initialParams={{name: "William"}} />
+    <Tab.Screen name="Profile" component={ProfileScreen} options={{ tabBarLabel: 'Profile'}} initialParams={{name: "user4"}} />
     
   </Tab.Navigator>
   );

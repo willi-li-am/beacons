@@ -114,7 +114,7 @@ const EventItem = ({ event, handleDecision }) => {
 };
 
 const EventsScreen = () => {
-  const userID = 'user1';
+  const userID = 'user4';
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
@@ -168,14 +168,42 @@ const EventsScreen = () => {
   );
 };
 
-export const EventsProfile = ({children}) => {
+export const EventsProfile = ({children, userID}) => {
+  const [events, setEvents] = useState([]);
+
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const response = await fetch(`https://beacon-9ob2.onrender.com/event/${userID}`);
+        const data = await response.json();
+        setEvents(data.filter((event) => event.author_id == userID));
+      } catch (error) {
+        Alert.alert('Error', 'Could not fetch events');
+      }
+    };
+
+    fetchEvents();
+  }, []);
+
+
   return (
     <>
       <ScrollView style={styles.container} contentContainerStyle={{ paddingBottom: 120 }}>
         {children}
-        {events.map((event, index) => (
-          <EventItem key={index} event={event} />
-        ))}
+        {events.map((event, index) => 
+          {
+            return(
+              <>{<EventItem key={index} event={event} />}</>
+            )
+          }
+        )}
+        {events.length === 0 && <View style={{
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: 200}}>
+            <Text>No beacons available</Text>
+            </View>}
       </ScrollView>
     </>
   );
