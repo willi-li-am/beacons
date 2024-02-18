@@ -8,9 +8,9 @@ const EventSchema = new Schema(
         location: { type: String, required: false },
         title: {type: String, required: true},
         description: { type: String, required: true},
-        invited: { type: String, required: true, index: true },
-        accepted: { type: [String]},
-        declined: { type: [String]},
+        invited: { type: [String], required: true, index: true },
+        accepted: { type: [String], required: true},
+        declined: { type: [String], required: true},
         status: {type: String, required: true}, //EVENT, ACTIVITY
     },
     {
