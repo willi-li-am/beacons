@@ -14,6 +14,7 @@ const createUser = async (body)=>{
         password: password,
         _id: name
     })
+    console.log(newUser)
     return await newUser.save()
 }
 
