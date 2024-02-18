@@ -1,21 +1,16 @@
 const Event = require('../models/event.model')
 
 const getEvent = async ( event_id ) => {
-    try {
-        // Use findById to fetch the event
-        const event = await Event.findById(event_id);
-    
-        if (!event) {
-          console.log('Event not found');
-          return null; // Or handle as appropriate for your application
-        }
-    
-        console.log('Event found:', event);
-        return event;
-    } catch (error) {
-        console.error('Error retrieving event:', error);
-        throw error; // Or handle as appropriate for your application
+    // Use findById to fetch the event
+    const event = await Event.findById(event_id);
+
+    if (!event) {
+        console.log('Event not found');
+        return null; // Or handle as appropriate for your application
     }
+
+    console.log('Event found:', event);
+    return event;
 }
 
 const getInvitedEvents = async (userId) => {
