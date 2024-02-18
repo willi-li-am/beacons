@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { useIsFocused } from '@react-navigation/native';
 import ProfileAvatar from '../modules/avatar';
+import axios from 'axios';
 
 
 // Define the component
@@ -20,17 +21,19 @@ const FriendsScreen = ({route}) => {
   useEffect(() => {
     if (isFocused) {
       getAllUsers()
-      .then((data) => setUsers(data))
+      .then((data) => {setUsers(() => [...data]); console.log(data)})
       .catch((err) => console.log(err))
     }
   },[isFocused])
   return (
     <View style={styles.container}>
       {users.map((user) => {
-        <>
+        return(
+        <View>
         <ProfileAvatar size={30} name={user.name}></ProfileAvatar>
         <Text style={{}}>{user.name}</Text>
-        </>
+        </View>
+        )
       })}
     </View>
   );
@@ -42,7 +45,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#f0f0f0', // Light grey background
+    backgroundColor: '#C8BFFF', // Light grey background
   },
   text: {
     fontSize: 18,
