@@ -5,7 +5,7 @@ const router = require ('express').Router()
 router.post('/',createUserController)
 
 router.get('/:user', getUserController)
-router.get('/:users', getUsersController)
+router.post('/users', getUsersController)
 
 router.post('/friend/send', sendFriendRequestController)
 
