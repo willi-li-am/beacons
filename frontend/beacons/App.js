@@ -25,7 +25,6 @@ function CustomTabBarButton({ children, onPress }) {
   return (
     <TouchableOpacity
       style={{
-        position: 'absolute',
         bottom: 10, // Raise the button from the bottom
         left: '50%', // Position at the half of the screen width
         right: '50%', // Also position from the right half
@@ -36,9 +35,9 @@ function CustomTabBarButton({ children, onPress }) {
     >
       <View
         style={{
-          width: 70,
-          height: 70,
-          borderRadius: 35,
+          width: 80,
+          height: 80,
+          borderRadius: 100,
           backgroundColor: '#C8BFFF',
           alignItems: 'center', // This ensures that the icon inside is centered
           justifyContent: 'center', // This ensures that the icon inside is centered
@@ -84,8 +83,11 @@ const BottomTabNavigator = () => {
   >
     {/* Order of Tab.Screen components determines their order on the screen */}
     {/* First tab (left-most) */}
-    <Tab.Screen name="Login" component={LoginScreen} options={{ tabBarLabel: 'Login' }} />
+    {/*<Tab.Screen name="Login" component={LoginScreen} options={{ tabBarLabel: 'Login' }} />*/}
     {/* Middle tab */}
+    {/* Last tab (right-most) */}
+    <Tab.Screen name="Events" component={EventsScreen} options={{ tabBarLabel: 'Events' }} />
+    <Tab.Screen name="Search" component={SearchScreen} options={{ tabBarLabel: 'Search'}} />
     <Tab.Screen
       name="Create"
       component={MapScreen}
@@ -94,12 +96,8 @@ const BottomTabNavigator = () => {
         tabBarLabel: 'Create',
       }}
     />
-    {/* Last tab (right-most) */}
-    <Tab.Screen name="Events" component={EventsScreen} options={{ tabBarLabel: 'Events' }} />
-    <Tab.Screen name="Search" component={SearchScreen} options={{ tabBarLabel: 'Search'}} />
-    {/* ... other tabs if you have more */}
     <Tab.Screen name="Friends" component={FriendsScreen} options={{ tabBarLabel: 'Friends'}} />
-    <Tab.Screen name="Profile" component={ProfileScreen} options={{ tabBarLabel: 'Profile'}} />
+    <Tab.Screen name="Profile" component={ProfileScreen} options={{ tabBarLabel: 'Profile'}} initialParams={{name: "William"}} />
     
   </Tab.Navigator>
   );
