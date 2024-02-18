@@ -1,4 +1,4 @@
-const {createUserController, getUserController, getUsersController, sendFriendRequestController, acceptFriendRequestController, declineFriendRequestController} = require ('../controllers/user.controller')
+const {createUserController, getUserController, getUsersController, sendFriendRequestController, acceptFriendRequestController, declineFriendRequestController, getUserByEmailController} = require ('../controllers/user.controller')
 
 const router = require ('express').Router()
 
@@ -6,6 +6,7 @@ router.post('/',createUserController)
 
 router.get('/:user', getUserController)
 router.post('/users', getUsersController)
+router.get('/email/:email', getUserByEmailController)
 
 router.post('/friend/send', sendFriendRequestController)
 

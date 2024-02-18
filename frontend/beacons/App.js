@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -49,7 +49,8 @@ function CustomTabBarButton({ children, onPress }) {
   );
 }
 
-const BottomTabNavigator = () => {
+const BottomTabNavigator = ({route}) => {
+  const {currentUser} = route.params
   return (
     <Tab.Navigator
     screenOptions={({ route }) => ({
@@ -97,6 +98,7 @@ const BottomTabNavigator = () => {
 };
 
 export default function App() {
+  const [currentUser, setCurrentUser] = useState("")
   return (
     <AuthContextProvider>
     <NavigationContainer>
@@ -112,9 +114,10 @@ export default function App() {
             name="Login"
             component={LoginScreen}
             options={{ headerShown: false }}
+            initialParams={{setCurrentUser: setCurrentUser}}
           />
-          <Stack.Screen name="TabNavigator" component={BottomTabNavigator} />
-          <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
+          <Stack.Screen name="TabNavigator" component={BottomTabNavigator} initialParams={{currentUser: currentUser}}/>
+          <Stack.Screen name="RegisterScreen" component={RegisterScreen} initialParams={{setCurrentUser: setCurrentUser}} />
         </Stack.Navigator>
       </NavigationContainer>
       </AuthContextProvider>

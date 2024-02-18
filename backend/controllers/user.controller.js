@@ -1,10 +1,16 @@
-const { createUser, getUser, getUsers, sendFriendRequest, acceptFriendRequest, declineFriendRequest } = require("../services/user.service");
+const { createUser, getUser, getUsers, sendFriendRequest, acceptFriendRequest, declineFriendRequest, getUserByEmail } = require("../services/user.service");
 
 const createUserController = (req, res) => {
     console.log(req.body)
     createUser(req.body)
     .then((data) => {res.send(data)})
     .catch(err => res.status(500).send(err))
+}
+
+const getUserByEmailController = (req, res) => {
+    getUserByEmail(req.params.email)
+    .then((data) => res.send(data))
+    .catch(err => {console.log(err); res.status(500)})
 }
 
 const getUserController = (req, res) => {
@@ -35,5 +41,5 @@ const declineFriendRequestController = (req,res) =>{
 }
 
 module.exports = {
-    createUserController, getUserController, getUsersController, sendFriendRequestController, acceptFriendRequestController, declineFriendRequestController
+    createUserController, getUserController, getUsersController, sendFriendRequestController, acceptFriendRequestController, declineFriendRequestController, getUserByEmailController
 }

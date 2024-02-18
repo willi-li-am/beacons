@@ -22,6 +22,10 @@ const getUser = async (id)=>{ //parameter should be string of the id??
     const user = await User.findById(id)
     return user
 }
+const getUserByEmail = async (email) => {
+    const user = await User.findOne({email: email})
+    return user
+}
 const getUsers = async (users)=>{ //parameter should be string of the id??
     if (!users) {
         throw new Error("Incorrect Input")
@@ -88,5 +92,5 @@ const declineFriendRequest = async (senderId, receiverId)=>{ //parameter should 
 }
 
 module.exports = {
-    createUser, getUser, getUsers, sendFriendRequest, acceptFriendRequest, declineFriendRequest 
+    createUser, getUser, getUsers, sendFriendRequest, acceptFriendRequest, declineFriendRequest , getUserByEmail
 }

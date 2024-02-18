@@ -3,24 +3,25 @@ import { View, TextInput, TouchableOpacity, Text, StyleSheet, Image, TouchableWi
 import axios from 'axios';
 import { useAuth } from '../hooks/AuthContext';
 
-const LoginScreen = ({ navigation }) => {
+const LoginScreen = ({ navigation, route }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { signIn } = useAuth();
 
+  const {setCurrentUser} = route.params
+
+  const emailToName = async (email) => {
+    const response = await axios.get(
+      `https://beacon-9ob2.onrender.com/user/email/${email}`, // Replace with your actual backend API
+    );
+    return response
+  }
+
   const handleLogin = async () => {
     try {
-      const response = await axios.post(
-        'https://beacon-9ob2.onrender.com/user/', // Replace with your actual backend API
-        {
-          username: username,
-          password: password,
-        }
-      );
-      if (response.status === 200) {
-        signIn(response.data.user);
-        navigation.navigate('TabNavigator', { screen: 'Events' });
-      }
+      emailToName(email)
+      .then((data) => {setCurrentUser(data); console.log(data)})
+      .then(()=> navigation.navigate('TabNavigator', { screen: 'Events' }))
     } catch (error) {
       console.error(error);
     }
@@ -61,7 +62,7 @@ const LoginScreen = ({ navigation }) => {
         <TouchableOpacity onPress={() => navigation.navigate('RegisterScreen')}>
             <Text style={styles.redirectText}>No account yet? Make one here!</Text>
         </TouchableOpacity>
-      <TouchableOpacity style={styles.signInButton} onPress={() => navigation.navigate('TabNavigator', { screen: 'Events' })}>
+      <TouchableOpacity style={styles.signInButton} onPress={handleLogin}>
         <Text style={styles.buttonText}>Log in</Text>
       </TouchableOpacity>
     </View>

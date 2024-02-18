@@ -16,11 +16,13 @@ import axios from 'axios';
 import { useAuth } from '../hooks/AuthContext';
 import { Ionicons } from '@expo/vector-icons';
 
-const RegisterScreen = ({ navigation }) => {
+const RegisterScreen = ({ navigation, route }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const { signIn } = useAuth();
+
+  const {setCurrentUser} = route.params
 
   const handleRegister = async () => {
     // Replace with your actual backend API endpoint
@@ -36,7 +38,7 @@ const RegisterScreen = ({ navigation }) => {
           }
         );
         if (response.status === 200) {
-          signIn(response.data.user);
+          setCurrentUser(name)
           navigation.navigate('TabNavigator');
         }
       } catch (error) {
