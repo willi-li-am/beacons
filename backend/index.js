@@ -28,7 +28,7 @@ app.use(cors({
     origin: '*', // Allow all origins
     credentials: true // Accept credentials (cookies) on the backend
 }));
-app.use(bp.json());
+app.use(express.json())
 app.use(bp.urlencoded({ extended: true }));
 
 app.use('/group', groupRouter)

@@ -1,6 +1,7 @@
 const { createUser, getUser, getUsers, sendFriendRequest, acceptFriendRequest, declineFriendRequest } = require("../services/user.service");
 
 const createUserController = (req, res) => {
+    console.log(req.body)
     createUser(req.body)
     .then((data) => {res.send(data)})
     .catch(err => res.status(500).send(err))
