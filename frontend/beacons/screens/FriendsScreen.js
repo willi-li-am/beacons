@@ -27,6 +27,9 @@ const FriendsScreen = ({route}) => {
   },[isFocused])
   return (
     <View style={styles.container}>
+      <View style={{alignItems: 'center', justifyContent: 'center'}}>
+        <Text style={{fontSize: 30, fontWeight: 'bold'}}>Friends</Text>
+      </View>
       {users.map((person, index) => {
         const user = users[users.length - 1 - index]
         return(
