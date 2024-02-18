@@ -18,6 +18,10 @@ const createUser = async (body)=>{
     return await newUser.save()
 }
 
+const getAllUser = async () => {
+    
+}
+
 const getUser = async (id)=>{ //parameter should be string of the id??
     const user = await User.findById(id)
     return user
