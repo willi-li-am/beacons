@@ -53,7 +53,7 @@ const BottomTabNavigator = () => {
     <Tab.Navigator
     screenOptions={({ route }) => ({
       headerShown: false,
-      tabBarActiveTintColor: 'tomato',
+      tabBarActiveTintColor: '#C8BFFF',
       tabBarInactiveTintColor: 'gray',
       tabBarStyle: styles.tabBar,
       tabBarIcon: ({ focused, color, size }) => {
@@ -126,7 +126,7 @@ export default function App() {
 }
 
 const shadowStyle = {
-  shadowColor: '#7F5DF0',
+  shadowColor: '#C8BFFF',
   shadowOffset: {
     width: 0,
     height: 8,
