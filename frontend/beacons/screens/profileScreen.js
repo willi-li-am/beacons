@@ -27,7 +27,8 @@ const ProfileScreen = ({ route }) => { // Destructure `route` directly here
   const { name } = route.params; // Access `name` directly from `route.params`
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container} >
+      <EventsProfile>
       <ProfileHeader name={name}/>
       <Text style={{
         fontWeight: 'bold',
@@ -35,8 +36,8 @@ const ProfileScreen = ({ route }) => { // Destructure `route` directly here
         marginTop: 10,
         marginLeft: 20,
       }}>Beacons</Text>
-      <EventsProfile/>
-    </SafeAreaView>
+      </EventsProfile>
+    </View>
   );
 };
 
@@ -47,6 +48,8 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#C8BFFF', // Light grey background
     color: '#FFFFFF',
+    paddingTop: 40,
+    paddingBottom: 115,
   },
 });
 

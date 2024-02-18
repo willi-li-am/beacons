@@ -6,7 +6,59 @@ import { Dimensions } from 'react-native';
 const screenWidth = Dimensions.get('window').width;
 const swipeThreshold = screenWidth / 3;
 
-const EventItem = ({ event, handleDecision }) => {
+const eventsData = [
+  {
+    author_id: 'Lily',
+    title: "Lily's Birthday Bash!",
+    location: "Mississauga at your mom's house",
+    time: 'August 14, 2024',
+    description: 'Come join me to celebrate my 19th bday'
+  },
+  {
+    author_id: 'William',
+    title: "Come to the gym with me",
+    location: "PAC",
+    time: 'in 30 min',
+    description: 'i need a workout buddy'
+  },
+  {
+    author_id: 'Sleepy Rita',
+    title: "I'm sleepy",
+    location: "Owen's couch",
+    time: 'Right now',
+    description: 'I\'m sleeping on the couch rn lol'
+  },
+  {
+    author_id: 'Sally',
+    title: "hey",
+    location: "costco",
+    time: '3:30 pm',
+    description: 'come shopping with me'
+  },
+  {
+    author_id: 'richard',
+    title: "work on map",
+    location: "ping pong table",
+    time: 'Right now',
+    description: 'I\'m cooking with the backend'
+  },
+  {
+    author_id: 'Owen',
+    title: "hackathon",
+    location: "Owen's house",
+    time: 'tomorrow',
+    description: 'join the fun in my basement'
+  }
+   // {
+  //   author_id: event.user_id,
+  //   title: event.title,
+  //   location: event.location,
+  //   time: event.date_expected,
+  //   description: event.description
+  // }
+];
+
+const EventItem = ({ event }) => {
   const renderLeftActions = () => {
     return (
       <View style={styles.swipeLeftActionContainer}>
@@ -95,10 +147,26 @@ const EventsScreen = () => {
 
   return (
     <>
-      <View style={styles.headerContainer}>
-        <Text style={styles.headerTitle}>Beacons</Text>
-      </View>
+      <ScrollView
+        style={styles.container}
+        contentContainerStyle={{ paddingBottom: 100 }} // Added padding at the bottom for better scrolling
+      >
+        <View style={styles.headerContainer}>
+          <Text style={styles.headerTitle}>Beacons</Text>
+        </View>
+        {events.map((event, index) => (
+          <EventItem key={index} event={event} />
+        ))}
+      </ScrollView>
+    </>
+  );
+};
+
+export const EventsProfile = ({children}) => {
+  return (
+    <>
       <ScrollView style={styles.container}>
+        {children}
         {events.map((event, index) => (
           <EventItem key={index} event={event} handleDecision={handleDecision} />
         ))}

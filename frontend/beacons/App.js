@@ -24,7 +24,7 @@ function CustomTabBarButton({ children, onPress }) {
   return (
     <TouchableOpacity
       style={{
-        bottom: 10, // Raise the button from the bottom
+        bottom: 20, // Raise the button from the bottom
         left: '50%', // Position at the half of the screen width
         right: '50%', // Also position from the right half
         transform: [{ translateX: -35 }], // Adjust the position to truly center based on the button width
@@ -69,10 +69,10 @@ const BottomTabNavigator = () => {
           iconName = focused ? 'person' : 'person-outline';
         }
         else if (route.name === 'Friends') { // Assuming 'Login' is another tab for illustration
-          iconName = focused ? 'person' : 'person-outline';
+          iconName = focused ? 'people' : 'people-outline';
         }
         else if (route.name === 'Search') { // Assuming 'Login' is another tab for illustration
-          iconName = focused ? 'person' : 'person-outline';
+          iconName = focused ? 'search' : 'search-outline';
         }
         // Add more icons for other tabs if necessary
         return <Ionicons name={iconName} size={size} color={color} />;
@@ -87,14 +87,7 @@ const BottomTabNavigator = () => {
     {/* Last tab (right-most) */}
     <Tab.Screen name="Events" component={EventsScreen} options={{ tabBarLabel: 'Events' }} />
     <Tab.Screen name="Search" component={SearchScreen} options={{ tabBarLabel: 'Search'}} />
-    <Tab.Screen
-      name="Create"
-      component={MapScreen}
-      options={{
-        tabBarButton: (props) => <CustomTabBarButton {...props} />,
-        tabBarLabel: 'Create',
-      }}
-    />
+    <Tab.Screen name="Create" component={MapScreen} options={{ tabBarLabel: 'Create'}} />
     <Tab.Screen name="Friends" component={FriendsScreen} options={{ tabBarLabel: 'Friends'}} />
     <Tab.Screen name="Profile" component={ProfileScreen} options={{ tabBarLabel: 'Profile'}} initialParams={{name: "William"}} />
     
