@@ -1,4 +1,4 @@
-const { createUser, getUser, getUsers, sendFriendRequest, acceptFriendRequest, declineFriendRequest } = require("../services/group.service");
+const { createUser, getUser, getUsers, sendFriendRequest, acceptFriendRequest, declineFriendRequest } = require("../services/user.service");
 
 const createUserController = (req, res) => {
     createUser(req.body)
@@ -7,12 +7,12 @@ const createUserController = (req, res) => {
 }
 
 const getUserController = (req, res) => {
-    getUser(req.params.id)
+    getUser(req.params.user)
     .then((data) => res.send(data))
     .catch(err => res.status(500).send(err))
 }
 const getUsersController = (req, res) => {
-    getUsers(req.params.id)
+    getUsers(req.body)
     .then((data) => res.send(data))
     .catch(err => res.status(500).send(err))
 }

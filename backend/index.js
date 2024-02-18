@@ -4,6 +4,7 @@ const app = express()
 const mongoose = require('mongoose')
 const groupRouter = require('./routes/group.routes')
 const eventRouter = require('./routes/event.routes')
+const userRouter = require('./routes/user.routes')
 
 require('dotenv').config()
 
@@ -27,6 +28,7 @@ app.use(bp.urlencoded({ extended: true }));
 
 app.use('/group', groupRouter)
 app.use('/event', eventRouter)
+app.use('/user', userRouter)
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`)
