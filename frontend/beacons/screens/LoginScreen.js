@@ -14,7 +14,7 @@ const LoginScreen = ({ navigation, route }) => {
     const response = await axios.get(
       `https://beacon-9ob2.onrender.com/user/email/${email}`, // Replace with your actual backend API
     );
-    return response
+    return response.data.name
   }
 
   const handleLogin = async () => {

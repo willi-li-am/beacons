@@ -51,6 +51,7 @@ function CustomTabBarButton({ children, onPress }) {
 
 const BottomTabNavigator = ({route}) => {
   const {currentUser} = route.params
+  console.log(currentUser)
   return (
     <Tab.Navigator
     screenOptions={({ route }) => ({
@@ -87,11 +88,11 @@ const BottomTabNavigator = ({route}) => {
     {/*<Tab.Screen name="Login" component={LoginScreen} options={{ tabBarLabel: 'Login' }} />*/}
     {/* Middle tab */}
     {/* Last tab (right-most) */}
-    <Tab.Screen name="Events" component={EventsScreen} options={{ tabBarLabel: 'Events' }} />
-    <Tab.Screen name="Search" component={SearchScreen} options={{ tabBarLabel: 'Search'}} />
-    <Tab.Screen name="Create" component={MapScreen} options={{ tabBarLabel: 'Create'}} />
-    <Tab.Screen name="Friends" component={FriendsScreen} options={{ tabBarLabel: 'Friends'}} />
-    <Tab.Screen name="Profile" component={ProfileScreen} options={{ tabBarLabel: 'Profile'}} initialParams={{name: "user4"}} />
+    <Tab.Screen name="Events" component={EventsScreen} options={{ tabBarLabel: 'Events' }} initialParams={{currentUser: currentUser}} />
+    <Tab.Screen name="Search" component={SearchScreen} options={{ tabBarLabel: 'Search'}} initialParams={{currentUser: currentUser}} />
+    <Tab.Screen name="Create" component={MapScreen} options={{ tabBarLabel: 'Create'}} initialParams={{currentUser: currentUser}} />
+    <Tab.Screen name="Friends" component={FriendsScreen} options={{ tabBarLabel: 'Friends'}} initialParams={{currentUser: currentUser}} />
+    <Tab.Screen name="Profile" component={ProfileScreen} options={{ tabBarLabel: 'Profile'}} initialParams={{name: currentUser}} />
     
   </Tab.Navigator>
   );

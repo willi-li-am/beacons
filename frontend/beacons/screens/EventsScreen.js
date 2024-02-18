@@ -81,8 +81,6 @@ const EventItem = ({ event, handleDecision }) => {
     );
   };
 
-  console.log("event: ", event)
-
   return (
     <Swipeable
       renderLeftActions={renderLeftActions}
@@ -113,8 +111,9 @@ const EventItem = ({ event, handleDecision }) => {
   );
 };
 
-const EventsScreen = () => {
-  const userID = 'user4';
+const EventsScreen = ({route}) => {
+  const {currentUser} = route.params
+  const userID = currentUser
   const [events, setEvents] = useState([]);
 
   useEffect(() => {

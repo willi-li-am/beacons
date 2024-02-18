@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, TextInput, Button, Modal } from 'react-native';
 import MapView, { Marker, Callout } from 'react-native-maps';
 
-const MapScreen = () => {
-
-  const userID = "user4";
+const MapScreen = ({route}) => {
+  const {currentUser} = route.params
+  const userID = currentUser;
 
   const [markers, setMarkers] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
@@ -27,18 +27,17 @@ const MapScreen = () => {
 
     const eventData = {
         date_expected: markerDate,
-        author_id: "user1",
+        author_id: userID,
         location: { latitude: tempMarker.latitude, longitude: tempMarker.longitude },
         title: markerTitle,
         description: markerDescription,
-        invited: ["user1","user4"],
-        accepted: ["user1"],
+        invited: [userID],
         status: "EVENT",
     }
 
     try {
         const response = await fetch('https://beacon-9ob2.onrender.com/event/', {
-            method: 'POST',
+            method: 'POST',
             headers: {
               'Content-Type': 'application/json',
             },
