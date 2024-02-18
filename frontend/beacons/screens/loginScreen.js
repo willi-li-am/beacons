@@ -19,7 +19,7 @@ const LoginScreen = ({ navigation }) => {
       );
       if (response.status === 200) {
         signIn(response.data.user);
-        navigation.navigate('TabNavigator', { screen: 'Dashboard' });
+        navigation.navigate('TabNavigator', { screen: 'Events' });
       }
     } catch (error) {
       console.error(error);
@@ -60,7 +60,7 @@ const LoginScreen = ({ navigation }) => {
         <TouchableOpacity onPress={() => navigation.navigate('RegisterScreen')}>
             <Text style={styles.redirectText}>No account yet? Make one here!</Text>
         </TouchableOpacity>
-      <TouchableOpacity style={styles.signInButton} onPress={handleLogin}>
+      <TouchableOpacity style={styles.signInButton} onPress={() => navigation.navigate('TabNavigator', { screen: 'Events' })}>
         <Text style={styles.buttonText}>Log in</Text>
       </TouchableOpacity>
     </View>

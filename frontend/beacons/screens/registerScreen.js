@@ -56,12 +56,12 @@ const RegisterScreen = ({ navigation }) => {
         placeholderTextColor="#A7A7A7"
         secureTextEntry
       />
-          <TouchableOpacity onPress={() => navigation.navigate('login')}>
+          <TouchableOpacity onPress={() => navigation.navigate('Login')}>
               <Text style={styles.redirectText}>
                 Already have an account? Login here!
               </Text>
             </TouchableOpacity>
-      <TouchableOpacity style={styles.signUpButton} onPress={handleRegister}>
+      <TouchableOpacity style={styles.signUpButton} onPress={() => navigation.navigate('TabNavigator', { screen: 'Events' })}>
         <Text style={styles.buttonText}>Sign Up</Text>
       </TouchableOpacity>
     </View>
