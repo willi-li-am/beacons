@@ -1,12 +1,37 @@
 // Import React and necessary components from React Native
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { useIsFocused } from '@react-navigation/native';
+import ProfileAvatar from '../modules/avatar';
+
 
 // Define the component
-const FriendsScreen = () => {
+const getAllUsers = async () => {
+  const response = await axios.get(
+    `https://beacon-9ob2.onrender.com/user/all`, // Replace with your actual backend API
+  );
+  return response.data
+}
+const FriendsScreen = ({route}) => {
+  const {currentUser} = route.params
+  const [users, setUsers] = useState([])
+  const isFocused = useIsFocused()
+
+  useEffect(() => {
+    if (isFocused) {
+      getAllUsers()
+      .then((data) => setUsers(data))
+      .catch((err) => console.log(err))
+    }
+  },[isFocused])
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>This is a blank screen for testing</Text>
+      {users.map((user) => {
+        <>
+        <ProfileAvatar size={30} name={user.name}></ProfileAvatar>
+        <Text style={{}}>{user.name}</Text>
+        </>
+      })}
     </View>
   );
 };
