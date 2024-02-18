@@ -30,8 +30,6 @@ app.use('/group', groupRouter)
 app.use('/event', eventRouter)
 app.use('/user', userRouter)
 
-app.listen(port, () => {
-    console.log(`Server is running on port: ${port}`)
-})
+
 
 module.exports = app
