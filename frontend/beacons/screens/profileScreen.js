@@ -2,7 +2,7 @@
 import React from 'react';
 import { SafeAreaView, Text, StyleSheet, View } from 'react-native';
 import ProfileAvatar from '../modules/avatar';
-import EventsScreen, { EventsProfile } from './EventsScreen';
+import { EventsProfile } from './EventsScreen';
 
 const ProfileHeader = ({name}) => {
   return(
@@ -23,10 +23,12 @@ const ProfileHeader = ({name}) => {
   )
 }
 // Define the component
-const ProfileScreen = () => {
+const ProfileScreen = ({ route }) => { // Destructure `route` directly here
+  const { name } = route.params; // Access `name` directly from `route.params`
+
   return (
     <SafeAreaView style={styles.container}>
-      <ProfileHeader name="William"/>
+      <ProfileHeader name={name}/>
       <Text style={{
         fontWeight: 'bold',
         fontSize: 20,
@@ -37,6 +39,7 @@ const ProfileScreen = () => {
     </SafeAreaView>
   );
 };
+
 
 // Create some basic styles for the component
 const styles = StyleSheet.create({
