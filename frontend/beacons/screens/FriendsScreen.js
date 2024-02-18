@@ -1,6 +1,6 @@
 // Import React and necessary components from React Native
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { SafeAreaView, View, Text, StyleSheet } from 'react-native';
 import { useIsFocused } from '@react-navigation/native';
 import ProfileAvatar from '../modules/avatar';
 import axios from 'axios';
@@ -27,12 +27,13 @@ const FriendsScreen = ({route}) => {
   },[isFocused])
   return (
     <View style={styles.container}>
-      {users.map((user) => {
+      {users.map((person, index) => {
+        const user = users[users.length - 1 - index]
         return(
-        <View>
-        <ProfileAvatar size={30} name={user.name}></ProfileAvatar>
-        <Text style={{}}>{user.name}</Text>
-        </View>
+        <SafeAreaView style={{flexDirection: 'row', alignItems: 'center', gap: 10, marginVertical: 10}}>
+          <ProfileAvatar size={30} name={user.name}></ProfileAvatar>
+          <Text style={{}}>{user.name}</Text>
+        </SafeAreaView>
         )
       })}
     </View>
@@ -43,8 +44,8 @@ const FriendsScreen = ({route}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    padding: 50,
+    paddingTop: 80,
     backgroundColor: '#C8BFFF', // Light grey background
   },
   text: {
