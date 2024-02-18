@@ -1,13 +1,40 @@
 // Import React and necessary components from React Native
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { SafeAreaView, Text, StyleSheet, View } from 'react-native';
+import ProfileAvatar from '../modules/avatar';
+import EventsScreen, { EventsProfile } from './EventsScreen';
 
+const ProfileHeader = ({name}) => {
+  return(
+    <View style={{
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: 20,
+      paddingLeft: 30,
+      width: '100%',
+    }}>
+      <ProfileAvatar size={80} name={name}></ProfileAvatar>
+      <Text style={{
+        fontWeight: 'bold',
+        fontSize: 40,
+        marginTop: 10,
+      }}>{name}</Text>
+    </View>
+  )
+}
 // Define the component
 const ProfileScreen = () => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>This is a blank screen for testing</Text>
-    </View>
+    <SafeAreaView style={styles.container}>
+      <ProfileHeader name="William"/>
+      <Text style={{
+        fontWeight: 'bold',
+        fontSize: 20,
+        marginTop: 10,
+        marginLeft: 20,
+      }}>Beacons</Text>
+      <EventsProfile/>
+    </SafeAreaView>
   );
 };
 
@@ -15,13 +42,8 @@ const ProfileScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#f0f0f0', // Light grey background
-  },
-  text: {
-    fontSize: 18,
-    color: '#333', // Dark grey text
+    backgroundColor: '#C8BFFF', // Light grey background
+    color: '#FFFFFF',
   },
 });
 

@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { Swipeable } from 'react-native-gesture-handler';
 import { Dimensions } from 'react-native';
+import ProfileAvatar from '../modules/avatar';
 
 // Calculate a third of the screen width
 const screenWidth = Dimensions.get('window').width;
@@ -45,7 +46,7 @@ const EventItem = ({ event }) => {
     >
       <View style={styles.eventBlock}>
         <View style={styles.inviteBox}>
-          <Text style={styles.inviteText}>{event.author_id} invites you to</Text>
+          <ProfileAvatar size={30} name={event.author_id}></ProfileAvatar><Text style={styles.inviteText}>{event.author_id} invites you to</Text>
         </View>
         <View style={styles.eventItem}>
           <Text style={styles.eventTitle}>{event.title}</Text>
@@ -105,6 +106,19 @@ const EventsScreen = () => {
   );
 };
 
+export const EventsProfile = () => {
+  return (
+    <>
+      <ScrollView style={styles.container}>
+        {eventsData.map((event, index) => (
+          <EventItem key={index} event={event} />
+        ))}
+      </ScrollView>
+    </>
+  );
+};
+
+//style the components
 const styles = StyleSheet.create({
   // Add your styles here
   container: {
@@ -121,6 +135,109 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     fontSize: 24,
     fontWeight: 'bold',
+    textAlign: 'center', // Ensure text is centered
+  },
+  swipeAction: {
+    padding: 20,
+    width: 100, 
+  },
+  swipeActionText: {
+    color: '#FFFFFF',
+    fontWeight: 'bold',
+    fontSize: 16, 
+  },
+  swipeLeftActionContainer: {
+    backgroundColor: 'green', 
+    justifyContent: 'center',
+  },
+  swipeRightActionContainer: {
+    backgroundColor: 'red', 
+    justifyContent: 'center',
+  },
+  scrollViewStyle: {
+    padding: 20, 
+  },
+  eventBlock: {
+    marginVertical: 10,
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
+    marginHorizontal: 10,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+    paddingHorizontal: 5,
+  },
+  eventItem: {
+    backgroundColor: '#8D62C5',
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
+    padding: 20,
+    elevation: 5,
+  },
+  inviteBox: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
+    gap: '10px',
+    backgroundColor: '#b488fc',
+    color: '#FFFFFF',
+    fontSize: 15,
+    fontWeight: 'bold',
+    width: '100%',
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    padding: 15, // Padding to match eventItem so text doesn't touch the sides
+    paddingLeft: 30,
+  },
+  inviteText: {
+    color: '#FFFFFF',
+    fontSize: 15,
+    fontWeight: 'bold',
+    width: '100%',
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+  },
+  eventTitle: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#FFFFFF',
+    marginBottom: 5,
+  },
+  eventDetails: {
+    fontSize: 14,
+    color: '#FFFFFF',
+    marginBottom: 10,
+  },
+  eventDescription: {
+    fontSize: 14,
+    color: '#FFFFFF',
+    marginBottom: 15,
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  buttonGoing: {
+    backgroundColor: '#BE97FF', 
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 20,
+  },
+  buttonNotGoing: {
+    backgroundColor: '#BE97FF',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 20,
+  },
+  buttonText: {
+    fontSize: 16,
+    color: '#FFFFFF',
     textAlign: 'center',
   },
   // Continue with your existing styles...
