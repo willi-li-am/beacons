@@ -50,8 +50,7 @@ function CustomTabBarButton({ children, onPress }) {
 }
 
 const BottomTabNavigator = ({route}) => {
-  const {currentUser} = route.params
-  console.log(currentUser)
+  const {currentUser, setUpdate} = route.params
   return (
     <Tab.Navigator
     screenOptions={({ route }) => ({
@@ -90,7 +89,7 @@ const BottomTabNavigator = ({route}) => {
     {/* Last tab (right-most) */}
     <Tab.Screen name="Events" component={EventsScreen} options={{ tabBarLabel: 'Events' }} initialParams={{currentUser: currentUser}} />
     <Tab.Screen name="Search" component={SearchScreen} options={{ tabBarLabel: 'Search'}} initialParams={{currentUser: currentUser}} />
-    <Tab.Screen name="Create" component={MapScreen} options={{ tabBarLabel: 'Create'}} initialParams={{currentUser: currentUser}} />
+    <Tab.Screen name="Create" component={MapScreen} options={{ tabBarLabel: 'Create'}} initialParams={{currentUser: currentUser, setUpdate: setUpdate}} />
     <Tab.Screen name="Friends" component={FriendsScreen} options={{ tabBarLabel: 'Friends'}} initialParams={{currentUser: currentUser}} />
     <Tab.Screen name="Profile" component={ProfileScreen} options={{ tabBarLabel: 'Profile'}} initialParams={{name: currentUser}} />
     
@@ -100,6 +99,7 @@ const BottomTabNavigator = ({route}) => {
 
 export default function App() {
   const [currentUser, setCurrentUser] = useState("")
+  const [update, setUpdate] = useState(false)
   return (
     <AuthContextProvider>
     <NavigationContainer>
@@ -117,7 +117,7 @@ export default function App() {
             options={{ headerShown: false }}
             initialParams={{setCurrentUser: setCurrentUser}}
           />
-          <Stack.Screen name="TabNavigator" component={BottomTabNavigator} initialParams={{currentUser: currentUser}}/>
+          <Stack.Screen name="TabNavigator" component={BottomTabNavigator} initialParams={{currentUser: currentUser, setUpdate: setUpdate}}/>
           <Stack.Screen name="RegisterScreen" component={RegisterScreen} initialParams={{setCurrentUser: setCurrentUser}} />
         </Stack.Navigator>
       </NavigationContainer>

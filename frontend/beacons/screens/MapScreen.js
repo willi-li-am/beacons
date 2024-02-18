@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TextInput, Button, Modal } from 'react-native';
 import MapView, { Marker, Callout } from 'react-native-maps';
 
 const MapScreen = ({route}) => {
-  const {currentUser} = route.params
+  const {currentUser, setUpdate} = route.params
   const userID = currentUser;
 
   const [markers, setMarkers] = useState([]);
@@ -48,6 +48,7 @@ const MapScreen = ({route}) => {
 
         if (response.ok){
             setEvent([...event, eventData]);
+            setUpdate((err) => !err)
         } else {
             console.log("Error adding event: ", data);
         }

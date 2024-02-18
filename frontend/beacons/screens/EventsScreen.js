@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Alert } from 'rea
 import { Swipeable } from 'react-native-gesture-handler';
 import { Dimensions } from 'react-native';
 import ProfileAvatar from '../modules/avatar';
+import { useIsFocused } from '@react-navigation/native';
 
 
 const screenWidth = Dimensions.get('window').width;
@@ -97,14 +98,6 @@ const EventItem = ({ event, handleDecision }) => {
           <Text style={styles.eventTitle}>{event.title}</Text>
           <Text style={styles.eventDetails}>{event.location.longitude}, {event.date_expected}</Text>
           <Text style={styles.eventDescription}>{event.description}</Text>
-          <View style={styles.buttonContainer}>
-            <TouchableOpacity style={styles.buttonGoing}>
-              <Text style={styles.buttonText}>Ppl going</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.buttonNotGoing}>
-              <Text style={styles.buttonText}>ppl Not Going</Text>
-            </TouchableOpacity>
-          </View>
         </View>
       </View>
     </Swipeable>
@@ -115,6 +108,7 @@ const EventsScreen = ({route}) => {
   const {currentUser} = route.params
   const userID = currentUser
   const [events, setEvents] = useState([]);
+  const isFocused = useIsFocused()
 
   useEffect(() => {
     const fetchEvents = async () => {
@@ -127,8 +121,8 @@ const EventsScreen = ({route}) => {
       }
     };
 
-    fetchEvents();
-  }, []);
+    if (isFocused) fetchEvents();
+  }, [isFocused]);
 
   const handleDecision = async (eventId, action) => {
     try {
@@ -160,7 +154,7 @@ const EventsScreen = ({route}) => {
           <Text style={styles.headerTitle}>Beacons</Text>
         </View>
         {events.map((event, index) => (
-          <EventItem key={index} event={event} />
+          <EventItem key={index} event={events[events.length - 1 - index]} />
         ))}
       </ScrollView>
     </>
@@ -169,6 +163,7 @@ const EventsScreen = ({route}) => {
 
 export const EventsProfile = ({children, userID}) => {
   const [events, setEvents] = useState([]);
+  const isFocused = useIsFocused()
 
   useEffect(() => {
     const fetchEvents = async () => {
@@ -181,8 +176,8 @@ export const EventsProfile = ({children, userID}) => {
       }
     };
 
-    fetchEvents();
-  }, []);
+    if (isFocused) fetchEvents();
+  }, [isFocused]);
 
 
   return (
@@ -192,7 +187,7 @@ export const EventsProfile = ({children, userID}) => {
         {events.map((event, index) => 
           {
             return(
-              <>{<EventItem key={index} event={event} />}</>
+              <>{<EventItem key={index} event={events[events.length - 1 - index]} />}</>
             )
           }
         )}
