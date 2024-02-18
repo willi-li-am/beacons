@@ -3,7 +3,7 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
 // Define the component
-const ProfileScreen = () => {
+const FriendsScreen = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>This is a blank screen for testing</Text>
@@ -26,4 +26,4 @@ const styles = StyleSheet.create({
 });
 
 // Export the component so it can be imported elsewhere
-export default ProfileScreen;
+export default FriendsScreen;
