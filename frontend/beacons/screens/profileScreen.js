@@ -2,7 +2,7 @@
 import React from 'react';
 import { SafeAreaView, Text, StyleSheet, View } from 'react-native';
 import ProfileAvatar from '../modules/avatar';
-import EventsScreen, { EventsProfile } from './eventsScreen';
+import EventsScreen, { EventsProfile } from './EventsScreen';
 
 const ProfileHeader = ({name}) => {
   return(

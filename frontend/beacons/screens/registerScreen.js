@@ -7,6 +7,7 @@ import { Ionicons } from '@expo/vector-icons';
 const RegisterScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
   const { signIn } = useAuth();
 
   const handleRegister = async () => {
@@ -53,6 +54,14 @@ const RegisterScreen = ({ navigation }) => {
         onChangeText={setPassword}
         value={password}
         placeholder="Password"
+        placeholderTextColor="#A7A7A7"
+        secureTextEntry
+      />
+      <TextInput
+        style={styles.input}
+        onChangeText={setName}
+        value={name}
+        placeholder="Name"
         placeholderTextColor="#A7A7A7"
         secureTextEntry
       />
