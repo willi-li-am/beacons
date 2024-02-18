@@ -117,7 +117,7 @@ const EventsScreen = ({route}) => {
         const data = await response.json();
         setEvents(data);
       } catch (error) {
-        Alert.alert('Error', 'Could not fetch events');
+
       }
     };
 
@@ -172,7 +172,7 @@ export const EventsProfile = ({children, userID}) => {
         const data = await response.json();
         setEvents(data.filter((event) => event.author_id == userID));
       } catch (error) {
-        Alert.alert('Error', 'Could not fetch events');
+
       }
     };
 

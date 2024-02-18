@@ -19,7 +19,8 @@ const createUser = async (body)=>{
 }
 
 const getAllUser = async () => {
-    
+    const users = await User.find({})
+    return users
 }
 
 const getUser = async (id)=>{ //parameter should be string of the id??
@@ -96,5 +97,5 @@ const declineFriendRequest = async (senderId, receiverId)=>{ //parameter should 
 }
 
 module.exports = {
-    createUser, getUser, getUsers, sendFriendRequest, acceptFriendRequest, declineFriendRequest , getUserByEmail
+    createUser, getUser, getUsers, sendFriendRequest, acceptFriendRequest, declineFriendRequest , getUserByEmail, getAllUser
 }

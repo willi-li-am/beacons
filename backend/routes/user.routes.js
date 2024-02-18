@@ -1,4 +1,5 @@
 const {createUserController, getUserController, getUsersController, sendFriendRequestController, acceptFriendRequestController, declineFriendRequestController, getUserByEmailController} = require ('../controllers/user.controller')
+const { getAllUser } = require('../services/user.service')
 
 const router = require ('express').Router()
 
@@ -7,6 +8,11 @@ router.post('/',createUserController)
 router.get('/:user', getUserController)
 router.post('/users', getUsersController)
 router.get('/email/:email', getUserByEmailController)
+router.get('/all', (req, res) => {
+    getAllUser()
+    .then((data) => res.send(data))
+    .catch(()=> res.status(500))
+})
 
 router.post('/friend/send', sendFriendRequestController)
 
