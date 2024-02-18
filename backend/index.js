@@ -2,6 +2,7 @@ const express = require('express')
 const bp = require("body-parser");
 const app = express()
 const mongoose = require('mongoose')
+const cors = require('cors');
 const groupRouter = require('./routes/group.routes')
 const eventRouter = require('./routes/event.routes')
 const userRouter = require('./routes/user.routes')
@@ -23,6 +24,10 @@ connection.once('open', () => {
     console.log('MongoDB database connection established successfully')
 })
 
+app.use(cors({
+    origin: '*', // Allow all origins
+    credentials: true // Accept credentials (cookies) on the backend
+}));
 app.use(bp.json());
 app.use(bp.urlencoded({ extended: true }));
 
