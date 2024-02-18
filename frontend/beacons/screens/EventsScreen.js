@@ -6,57 +6,57 @@ import { Dimensions } from 'react-native';
 const screenWidth = Dimensions.get('window').width;
 const swipeThreshold = screenWidth / 3;
 
-const eventsData = [
-  {
-    author_id: 'Lily',
-    title: "Lily's Birthday Bash!",
-    location: "Mississauga at your mom's house",
-    time: 'August 14, 2024',
-    description: 'Come join me to celebrate my 19th bday'
-  },
-  {
-    author_id: 'William',
-    title: "Come to the gym with me",
-    location: "PAC",
-    time: 'in 30 min',
-    description: 'i need a workout buddy'
-  },
-  {
-    author_id: 'Sleepy Rita',
-    title: "I'm sleepy",
-    location: "Owen's couch",
-    time: 'Right now',
-    description: 'I\'m sleeping on the couch rn lol'
-  },
-  {
-    author_id: 'Sally',
-    title: "hey",
-    location: "costco",
-    time: '3:30 pm',
-    description: 'come shopping with me'
-  },
-  {
-    author_id: 'richard',
-    title: "work on map",
-    location: "ping pong table",
-    time: 'Right now',
-    description: 'I\'m cooking with the backend'
-  },
-  {
-    author_id: 'Owen',
-    title: "hackathon",
-    location: "Owen's house",
-    time: 'tomorrow',
-    description: 'join the fun in my basement'
-  }
-   // {
-  //   author_id: event.user_id,
-  //   title: event.title,
-  //   location: event.location,
-  //   time: event.date_expected,
-  //   description: event.description
-  // }
-];
+// const eventsData = [
+//   {
+//     author_id: 'Lily',
+//     title: "Lily's Birthday Bash!",
+//     location: "Mississauga at your mom's house",
+//     time: 'August 14, 2024',
+//     description: 'Come join me to celebrate my 19th bday'
+//   },
+//   {
+//     author_id: 'William',
+//     title: "Come to the gym with me",
+//     location: "PAC",
+//     time: 'in 30 min',
+//     description: 'i need a workout buddy'
+//   },
+//   {
+//     author_id: 'Sleepy Rita',
+//     title: "I'm sleepy",
+//     location: "Owen's couch",
+//     time: 'Right now',
+//     description: 'I\'m sleeping on the couch rn lol'
+//   },
+//   {
+//     author_id: 'Sally',
+//     title: "hey",
+//     location: "costco",
+//     time: '3:30 pm',
+//     description: 'come shopping with me'
+//   },
+//   {
+//     author_id: 'richard',
+//     title: "work on map",
+//     location: "ping pong table",
+//     time: 'Right now',
+//     description: 'I\'m cooking with the backend'
+//   },
+//   {
+//     author_id: 'Owen',
+//     title: "hackathon",
+//     location: "Owen's house",
+//     time: 'tomorrow',
+//     description: 'join the fun in my basement'
+//   }
+//    // {
+//   //   author_id: event.user_id,
+//   //   title: event.title,
+//   //   location: event.location,
+//   //   time: event.date_expected,
+//   //   description: event.description
+//   // }
+// ];
 
 const EventItem = ({ event, handleDecision }) => {
   const renderLeftActions = () => {
@@ -79,6 +79,8 @@ const EventItem = ({ event, handleDecision }) => {
     );
   };
 
+  console.log("event: ", event)
+
   return (
     <Swipeable
       renderLeftActions={renderLeftActions}
@@ -92,7 +94,7 @@ const EventItem = ({ event, handleDecision }) => {
         </View>
         <View style={styles.eventItem}>
           <Text style={styles.eventTitle}>{event.title}</Text>
-          <Text style={styles.eventDetails}>{event.location}, {event.time}</Text>
+          <Text style={styles.eventDetails}>{event.location.longitude}, {event.date_expected}</Text>
           <Text style={styles.eventDescription}>{event.description}</Text>
           <View style={styles.buttonContainer}>
             <TouchableOpacity style={styles.buttonGoing}>
@@ -109,12 +111,13 @@ const EventItem = ({ event, handleDecision }) => {
 };
 
 const EventsScreen = () => {
-  const [events, setEvents] = useState([...eventsData]);
+  const userID = 'user1';
+  const [events, setEvents] = useState([]);
 
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const response = await fetch('https://beacon-9ob2.onrender.com/event/');
+        const response = await fetch(`https://beacon-9ob2.onrender.com/event/${userID}`);
         const data = await response.json();
         setEvents(data);
       } catch (error) {
@@ -167,7 +170,7 @@ export const EventsProfile = ({children}) => {
     <>
       <ScrollView style={styles.container} contentContainerStyle={{ paddingBottom: 120 }}>
         {children}
-        {eventsData.map((event, index) => (
+        {events.map((event, index) => (
           <EventItem key={index} event={event} />
         ))}
       </ScrollView>
