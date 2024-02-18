@@ -5,7 +5,9 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Ionicons } from '@expo/vector-icons';
 import LoginScreen from './screens/loginScreen';
+import RegisterScreen from './screens/registerScreen';
 import EventsScreen from './screens/eventsScreen';
+import { AuthContextProvider } from './hooks/AuthContext';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -34,6 +36,7 @@ const BottomTabNavigator = () => {
 
 export default function App() {
   return (
+    <AuthContextProvider>
     <NavigationContainer>
         <Stack.Navigator
           initialRouteName="login"
@@ -49,8 +52,10 @@ export default function App() {
             options={{ headerShown: false }}
           />
           <Stack.Screen name="TabNavigator" component={BottomTabNavigator} />
+          <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
         </Stack.Navigator>
       </NavigationContainer>
+      </AuthContextProvider>
   );
 }
 
