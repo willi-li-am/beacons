@@ -1,5 +1,17 @@
 import React, { useState } from 'react';
-import { View, TextInput, TouchableOpacity, Text, StyleSheet, Image } from 'react-native';
+import {
+  View,
+  TextInput,
+  Button,
+  StyleSheet,
+  KeyboardAvoidingView,
+  Platform,
+  TouchableWithoutFeedback,
+  Keyboard,
+  TouchableOpacity,
+  Text,
+  Image,
+} from 'react-native';
 import axios from 'axios';
 import { useAuth } from '../hooks/AuthContext';
 import { Ionicons } from '@expo/vector-icons';
@@ -12,10 +24,11 @@ const RegisterScreen = ({ navigation }) => {
 
   const handleRegister = async () => {
     // Replace with your actual backend API endpoint
+    console.log(email, password, name)
     const registerUser = async (email, password, name) => {
       try {
         const response = await axios.post(
-          'https://beacon-9ob2.onrender.com/user/',
+          'https://beacon-9ob2.onrender.com/user',
           {
             email: email,
             password: password,
@@ -24,7 +37,7 @@ const RegisterScreen = ({ navigation }) => {
         );
         if (response.status === 200) {
           signIn(response.data.user);
-          navigation.navigate('Dashboard');
+          navigation.navigate('TabNavigator');
         }
       } catch (error) {
         console.error(error);
@@ -34,7 +47,12 @@ const RegisterScreen = ({ navigation }) => {
   };
 
   return (
-    <View style={styles.container}>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <KeyboardAvoidingView
+        behavior={'padding'}
+        keyboardVerticalOffset={64}
+        style={styles.container}
+      >
       
       <TouchableOpacity 
         style={styles.backButton} 
@@ -70,10 +88,11 @@ const RegisterScreen = ({ navigation }) => {
                 Already have an account? Login here!
               </Text>
             </TouchableOpacity>
-      <TouchableOpacity style={styles.signUpButton} onPress={() => navigation.navigate('TabNavigator', { screen: 'Events' })}>
+      <TouchableOpacity style={styles.signUpButton} onPress={handleRegister}>
         <Text style={styles.buttonText}>Sign Up</Text>
       </TouchableOpacity>
-    </View>
+    </KeyboardAvoidingView>
+    </TouchableWithoutFeedback>
   );
 };
 

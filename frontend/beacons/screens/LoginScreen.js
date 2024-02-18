@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, TextInput, TouchableOpacity, Text, StyleSheet, Image} from 'react-native';
+import { View, TextInput, TouchableOpacity, Text, StyleSheet, Image, TouchableWithoutFeedback, Keyboard} from 'react-native';
 import axios from 'axios';
 import { useAuth } from '../hooks/AuthContext';
 
@@ -37,6 +37,7 @@ const LoginScreen = ({ navigation }) => {
   };
 
   return (
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
     <View style={styles.container}>
       <Image source={require('../assets/logo.png')} style={styles.logo} />
       <TextInput
@@ -64,6 +65,7 @@ const LoginScreen = ({ navigation }) => {
         <Text style={styles.buttonText}>Log in</Text>
       </TouchableOpacity>
     </View>
+    </TouchableWithoutFeedback>
   );
 };
 
