@@ -58,7 +58,7 @@ const eventsData = [
   // }
 ];
 
-const EventItem = ({ event }) => {
+const EventItem = ({ event, handleDecision }) => {
   const renderLeftActions = () => {
     return (
       <View style={styles.swipeLeftActionContainer}>
@@ -109,7 +109,7 @@ const EventItem = ({ event }) => {
 };
 
 const EventsScreen = () => {
-  const [events, setEvents] = useState([]);
+  const [events, setEvents] = useState([...eventsData]);
 
   useEffect(() => {
     const fetchEvents = async () => {
@@ -167,8 +167,8 @@ export const EventsProfile = ({children}) => {
     <>
       <ScrollView style={styles.container}>
         {children}
-        {events.map((event, index) => (
-          <EventItem key={index} event={event} handleDecision={handleDecision} />
+        {eventsData.map((event, index) => (
+          <EventItem key={index} event={event} />
         ))}
       </ScrollView>
     </>
