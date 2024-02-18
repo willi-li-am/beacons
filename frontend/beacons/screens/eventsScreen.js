@@ -3,6 +3,7 @@ import React from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { Swipeable } from 'react-native-gesture-handler';
 import { Dimensions } from 'react-native';
+import ProfileAvatar from '../modules/avatar';
 
 // Calculate a third of the screen width
 const screenWidth = Dimensions.get('window').width;
@@ -91,7 +92,7 @@ const EventItem = ({ event }) => {
     >
       <View style={styles.eventBlock}>
         <View style={styles.inviteBox}>
-          <Text style={styles.inviteText}>{event.author_id} invites you to</Text>
+          <ProfileAvatar size={30} name={event.author_id}></ProfileAvatar><Text style={styles.inviteText}>{event.author_id} invites you to</Text>
         </View>
         <View style={styles.eventItem}>
           <Text style={styles.eventTitle}>{event.title}</Text>
@@ -117,6 +118,18 @@ const EventsScreen = () => {
       <View style={styles.headerContainer}>
         <Text style={styles.headerTitle}>Beacons</Text>
       </View>
+      <ScrollView style={styles.container}>
+        {eventsData.map((event, index) => (
+          <EventItem key={index} event={event} />
+        ))}
+      </ScrollView>
+    </>
+  );
+};
+
+export const EventsProfile = () => {
+  return (
+    <>
       <ScrollView style={styles.container}>
         {eventsData.map((event, index) => (
           <EventItem key={index} event={event} />
@@ -192,6 +205,8 @@ const styles = StyleSheet.create({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    flexDirection: 'row',
+    gap: '10px',
     backgroundColor: '#b488fc',
     color: '#FFFFFF',
     fontSize: 15,
@@ -200,9 +215,9 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
     padding: 15, // Padding to match eventItem so text doesn't touch the sides
+    paddingLeft: 30,
   },
   inviteText: {
-    backgroundColor: '#b488fc',
     color: '#FFFFFF',
     fontSize: 15,
     fontWeight: 'bold',

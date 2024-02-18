@@ -12,8 +12,7 @@ import MapScreen from './screens/MapScreen';
 import ProfileScreen from './screens/profileScreen';
 import SearchScreen from './screens/SearchScreen';
 import FriendsScreen from './screens/FriendsScreen';
-import EventsScreen from './screens/eventsScreen';
-import { AuthContextProvider } from './hooks/AuthContext';
+import EventsScreen from './screens/EventsScreen';
 
 // Define any additional screens you have
 // ...
