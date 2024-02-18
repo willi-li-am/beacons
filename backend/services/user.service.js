@@ -12,6 +12,7 @@ const createUser = async (body)=>{
     newUser.email = email
     newUser.name = name
     newUser.password = password
+    newUser._id = name
     return await newUser.save()
 }
 
@@ -23,7 +24,7 @@ const getUsers = async (users)=>{ //parameter should be string of the id??
     if (!users) {
         throw new Error("Incorrect Input")
     }
-    let index = 0
+
     const usersArray = [];
 
     for (let user in users){
