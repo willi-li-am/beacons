@@ -7,7 +7,6 @@ import { Ionicons } from '@expo/vector-icons';
 
 // Import your screens
 import LoginScreen from './screens/LoginScreen';
-import RegisterScreen from './screens/RegisterScreen';
 import MapScreen from './screens/MapScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import SearchScreen from './screens/SearchScreen';
@@ -123,7 +122,7 @@ export default function App() {
             options={{ headerShown: false }}
           />
           <Stack.Screen name="TabNavigator" component={BottomTabNavigator} />
-          <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
+          <Stack.Screen name="RegisterScreen" component={LoginScreen} />
         </Stack.Navigator>
       </NavigationContainer>
       </AuthContextProvider>
