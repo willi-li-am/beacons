@@ -1,4 +1,12 @@
-# Beacons: A Beacon of Responsible Technology and Community Connection
+<div align="center">
+    <div id="user-content-toc">
+      <ul>
+          <summary><h1 style="display: inline-block; margin-bottom:0px; font-size:60pt;">Beacons</h1></summary>
+      </ul>
+    </div>
+    <h3>A Beacon of Community Connection</h3>
+<!--     <h4><i>xxx</i></h4> -->
+</div>
 
 Submitted to DeerHacks. [Submission](https://devpost.com/software/beakons)
 
