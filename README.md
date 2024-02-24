@@ -1,6 +1,6 @@
 # Beacons: A Beacon of Responsible Technology and Community Connection
 
-Submitted to DeerHacks. 
+Submitted to DeerHacks. [Submission](https://devpost.com/software/beakons)
 
 ## Introduction
 Welcome to Beacons, an innovative app designed to transform the event planning landscape. In this digital age, fostering genuine connections while promoting ethical technology use is crucial. Beacons originated from our struggles in coordinating plans and communicating effectively within groups. We aim to offer an all-in-one solution that simplifies event coordination, underlining our commitment to community, inclusivity, and sustainability. The essence of Beacons lies in its name – a beacon is a guiding light that brings people together, inspiring the creation of a platform where individual events can collectively shine.
